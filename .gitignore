@@ -1,0 +1,5 @@
+# Ignora as dependências do projeto (instaladas via npm install)
+node_modules/
+
+# Ignora o arquivo de variáveis de ambiente (contém dados sensíveis como senha do banco)
+.env
