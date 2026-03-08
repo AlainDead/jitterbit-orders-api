@@ -9,7 +9,12 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   try {
     // Tenta estabelecer a conexão com o MongoDB usando a URL do .env
-    const conn = await mongoose.connect(process.env.MONGO_URI);
+    // family: 4 força IPv4 para evitar problemas de DNS em algumas redes
+    // serverSelectionTimeoutMS define o tempo máximo de espera pela conexão
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 5000,
+      family: 4
+    });
 
     // Exibe o host do banco conectado para confirmar a conexão
     console.log(`✅ MongoDB conectado: ${conn.connection.host}`);
