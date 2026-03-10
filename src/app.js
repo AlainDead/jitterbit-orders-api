@@ -16,6 +16,14 @@ const errorHandler = require('./middleware/errorHandler');
 // Cria a instância da aplicação Express
 const app = express();
 
+// Permite que o frontend React acesse a API
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+  res.header('Access-Control-Allow-Headers', 'Content-Type')
+  next()
+})
+
 // Define a porta — usa a do .env ou 3000 como padrão
 const PORT = process.env.PORT || 3000;
 
